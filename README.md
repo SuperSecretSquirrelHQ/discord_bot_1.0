@@ -1,9 +1,10 @@
-# discord_bot_1.0
-Modular Discord Bot with Web-Panel
-[DISCORD BOT][]
-Modular components that can be enabled or disabled via web interface(REACT)
+#ROAD-MAP
 
-Modules
+Bot Name - TBA
+*Modular components that can be enabled or disabled via web interface (REACT?)*
+
+# Modules
+
 - Basic Moderation
 - Advance Moderation
 - Channel & Role deployments using Server Templates
@@ -18,8 +19,8 @@ Modules
     - Input profile picture or accept ur1l of image to mock (tensorflow)
 - Content Creator Support
     - Auto posting
-      - all major social media platforms
-    - donator hooks
+      - All major social media platforms
+    - Donator hooks
 - Profile System
     - Link:Economy,Reaction Roles
     - Font & Nickname control
@@ -35,7 +36,7 @@ Modules
     - API generic plugin
     - Auto Webhook generator
     - Docker Integration
-        - auto deployments
+        - Auto deployments
     - Admin/Mod tools
 - Proprietary Bot Controller
     - Invite/Dismiss Capability
@@ -45,5 +46,5 @@ Modules
 
 
 # Additions 
-- Github Integration>
-    - Auto update pull requests>
+- Github Integration
+    - Auto update pull requests
