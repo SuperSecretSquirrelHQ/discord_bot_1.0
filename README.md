@@ -1,9 +1,8 @@
-#ROAD-MAP
-
+# ROAD-MAP
 Bot Name - TBA
 *Modular components that can be enabled or disabled via web interface (REACT?)*
 
-# Modules
+   # Modules
 
 - Basic Moderation
 - Advance Moderation
