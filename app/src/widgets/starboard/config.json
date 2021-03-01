@@ -1,0 +1,37 @@
+[
+  {
+    "guildId": "GUILD_ID",
+    "channelId": "CHANNEL_ID",
+    "reactionThreshold": 3,
+    "votePolicy": "hidden",
+    "upvote": {
+      "emojis": ["⭐", "⬆️"],
+      "overrideEmojis": ["🌟"],
+      "overrideUserIds": [],
+      "overrideRoleIds": ["ROLE_ID"]
+    },
+    "downvote": {
+      "emojis": ["⬇️"],
+      "overrideEmojis": ["⛔"],
+      "overrideUserIds": ["USER_ID"],
+      "overrideRoleIds": []
+    },
+    "pinnedIndicator": {
+      "message": "{1}'s message was pinned to {2}.",
+      "pingUser": true
+    },
+    "embed": {
+      "color": "ffac33",
+      "footerText": "Starboard",
+      "jumpText": "link",
+      "renderJumpLink": true
+    },
+    "ignore": {
+      "rules": true,
+      "nsfw": false,
+      "self": true,
+      "botMessage": false,
+      "channelIds": ["CHANNEL_ID"]
+    }
+  }
+]
