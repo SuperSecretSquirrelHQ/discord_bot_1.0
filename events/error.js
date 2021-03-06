@@ -1,4 +1,4 @@
 //here the event starts
-module.exports = client => {
-    console.error();
-}
+module.exports = (client) => {
+  console.error();
+};

@@ -16,11 +16,14 @@ const cooldowns = new Collection(); //an collection for cooldown commands of eac
 
 client.categories = fs.readdirSync('./commands/'); //categories
 
-['command'].forEach((handler) => {
-  require(`./handlers/command`)(client);
-}); //this is for command loading in the handler file, one fireing for each cmd
-const eventhandler = require('./handlers/events');
-eventhandler(client); //this is for event handling
+//* ['command'].forEach((handler) => {
+//*  require(`./handlers/command`)(client);
+//* }); //this is for command loading in the handler file, one fireing for each cmd
+
+const commandHandler = require('./handlers/command.js');
+commandHandler(client); // Command Handler
+const eventHandler = require('./handlers/events.js');
+eventHandler(client); //this is for event handling
 
 //fires each time the bot receives a message
 client.on('message', async (message) => {
@@ -30,7 +33,7 @@ client.on('message', async (message) => {
   if (!message.content.startsWith(prefix) && message.content.startsWith(client.user.id)) return message.reply(`My Prefix is: **\`${prefix}\`**, type \`${prefix}help\` for more information!`); //if the messages is not a command and someone tags the bot, then send an info msg
   if (!message.content.startsWith(prefix)) return; //if the message does not starts with the prefix, return, so only commands are fired!
 
-  const args = message.content.slice(prefix.length).trim().split(/ +/g); //creating the argumest (each space == 1 arg)
+  const args = message.content.slice(prefix.length).trim().split(/\s+/g); //creating the argumest (each space == 1 arg)
   const cmd = args.shift().toLowerCase(); //creating the cmd argument by shifting the args by 1
 
   if (cmd.length === 0) return; //if no cmd, then return
