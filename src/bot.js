@@ -1,8 +1,8 @@
-require('dotenv').config();
+require('dotenv').config(); // Require dotenv file for hidden configs.
 
 // const { Client, WebhookClient } = require('discord.js');
 
-const Discord = require('discord.js');
+const Discord = require('discord.js'); // Require discord.js for core functionality.
 
 const client = new Discord.Client({
   partials: ['MESSAGE', 'REACTION']
@@ -16,6 +16,10 @@ const PREFIX = process.env.PREFIX;
  * The ready event is vital, it means that only _after_ this will your bot start reacting to information
  * received from Discord
  */
+
+/* ========================================================================================
+  This event is vital. Only after the client is ready, the bot will start reacting to information recieved from Discord.
+========================================================================================= */
 client.on('ready', () => {
   console.log('I am ready and listening!');
 });

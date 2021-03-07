@@ -1,15 +1,18 @@
 <h1 align="center"> Super Secret Squirrel Bot </h1>
 
 ##
-## Overview 
+
+## Overview
+
 <p> Bot Name - TBA </p>
 <p> Designed to be a fully modular bot  </p>
 
-## Moduels
-- <h5>Basic Moderation 
+## Modules
+
+- <h5>Basic Moderation
 - <h5>Advance Moderation
 - <h5>Reaction Roles
-- <h5 >Content Creator Support</h5>
+- <h5>Content Creator Support</h5>
   - Twitch Streams<br>
   - Auto Social Media posting<br>
   - Donator hooks<br>
@@ -42,7 +45,8 @@
 - <h5> Mini-Games</h5>
   - Trivia<br>
   - All the Games<br>
-##  Additions 
+
+## Additions
 
 - <h5> Proprietary Bot Controller</h5>
   - Invite/Dismiss Capability<br>

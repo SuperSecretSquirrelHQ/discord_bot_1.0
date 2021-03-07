@@ -1,67 +1,79 @@
-const { MessageEmbed } = require('discord.js');
-const { stripIndents } = require('common-tags');
-const config = require('../../config.json');
+const { MessageEmbed } = require('discord.js'); // Require discord.js for embeded messages.
+const { stripIndents } = require('common-tags'); // Require common-tags for stripping indents in messages.
+const config = require('../../config.json'); // Load the config file with the token and prefix.
 
-//Here the command starts
 module.exports = {
-  //definition
-  name: 'help', //the name of the command
-  category: 'info', //the category this will be listed at, for the help cmd
-  aliases: ['h', 'commandinfo'], //every parameter can be an alias or empty for no aliases
-  cooldown: 5, //this will set it to a 5 second cooldown
-  usage: 'help [Command]', //this is for the help command for EACH cmd
-  description: 'Returns all Commmands, or one specific command', //the description of the command
+  // Define the objects.
+  name: 'help', // The name of the command.
+  category: 'info', // The category the command will be listed at (for the help cmd).
+  aliases: ['h', 'commandinfo'], // Array of aliases.
+  args: false,
+  guildOnly: false,
+  cooldown: 5, // Set the cooldown, in seconds.
+  usage: 'help [Command]', // An example of how to use the command. <> for required and [] for optional parameters.
+  description: 'Returns all Commmands, or one specific command', // The description of the command.
 
-  //running the command with the parameters: client, message, args, user, text, prefix
+  // A subfunction that runs the command with the following parameters: client, message, args, user, text, prefix.
   run: async (client, message, args, user, text, prefix) => {
     if (args[0]) {
-      //if there are arguments then get the command help
+      // If there are arguments, then return the help command. Example: "$help say".
       return getCMD(client, message, args[0]);
     } else {
-      //if not get all commands
+      // If there are not arguments, then return all commands. Example: "$help".
       return getAll(client, message);
     }
   }
 };
 
-//function for getting all commands
+// Function for getting all commands.
 function getAll(client, message) {
-  const embed = new MessageEmbed() //defining the Embed
+  const embed = new MessageEmbed() // Define the embed.
     .setColor('ORANGE')
     .setThumbnail(client.user.displayAvatarURL())
     .setTitle('HELP MENU')
-    .setFooter(`To see command descriptions and inforamtion, type: ${config.prefix}help [CMD NAME]`, client.user.displayAvatarURL());
+    .setFooter(`To see a command's description and other information, type: ${config.prefix}help [command]`, client.user.displayAvatarURL());
+  // Pass in value is client, initiated from index.js.
   const commands = (category) => {
-    //finding all commands and listing them into a string with filter and map
-    return client.commands
-      .filter((cmd) => cmd.category === category)
-      .map((cmd) => `\`${cmd.name}\``)
-      .join(', ');
+    // Find all commands and listing them into a string. Then, filter and map, and join them together again.
+    console.log(category);
+    return (
+      client.commands
+        .filter((cmd) => cmd.category === category)
+        //TODO: Add another filter to not display certain categories, unless command is issued in a specific channel.
+        .map((cmd) => `\`${cmd.name}\``)
+        .join(' ')
+    );
   };
-  //get the command infostring
+  // Get the command infostring.                                   Discord formatting below
   const info = client.categories.map((cat) => stripIndents`**__${cat[0].toUpperCase() + cat.slice(1)}__**\n> ${commands(cat)}`).reduce((string, category) => string + '\n' + category);
-  //sending the embed with the description
+  // Send the embed with the description.
   return message.channel.send(embed.setDescription(info));
 }
 
-//function for all commands
+// Function to get all commands.
 function getCMD(client, message, input) {
-  const embed = new MessageEmbed(); //creating a new Embed
-  const cmd = client.commands.get(input.toLowerCase()) || client.commands.get(client.aliases.get(input.toLowerCase())); //getting the command by name/alias
+  const embed = new MessageEmbed(); // Create a new Embed
+  const cmd = client.commands.get(input.toLowerCase()) || client.commands.get(client.aliases.get(input.toLowerCase())); // Get the command by name or alias.
+
   if (!cmd) {
-    //if no cmd found return info no infos!
-    return message.channel.send(embed.setColor('RED').setDescription(`No Information found for command **${input.toLowerCase()}**`));
+    // If the command isn't found, return saying no info was found.
+    return message.channel.send(embed.setColor('RED').setDescription(`No Information found for the following command: **${input.toLowerCase()}**`));
   }
+
   if (cmd.name) embed.addField('**Command name**', `\`${cmd.name}\``);
+
   if (cmd.description) embed.addField('**Description**', `\`${cmd.description}\``);
 
   if (cmd.aliases) embed.addField('**Aliases**', `\`${cmd.aliases.map((a) => `${a}`).join('`, `')}\``);
+
   if (cmd.cooldown) embed.addField('**Cooldown**', `\`${cmd.cooldown} Seconds\``);
   else embed.addField('**Cooldown**', `\`1 Second\``);
+
   if (cmd.usage) {
     embed.addField('**Usage**', `\`${config.prefix}${cmd.usage}\``);
     embed.setFooter('Syntax: <> = required, [] = optional');
   }
-  //send the new Embed
+
+  // Send the new Embed
   return message.channel.send(embed.setColor('ORANGE'));
 }

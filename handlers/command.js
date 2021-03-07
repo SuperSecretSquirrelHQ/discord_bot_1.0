@@ -1,29 +1,28 @@
-const { readdirSync } = require('fs'); //requireing, the module for reading files
-const ascii = require('ascii-table'); //requiring ascii-table which is a great tool for creating ascii tables
+const { readdirSync } = require('fs'); // Require FS for reading files and getting their inputs.
+const ascii = require('ascii-table'); // Require ascii-table for creating ascii tables.
 
-let table = new ascii('Commands'); //creating a new table with the name "Commands"
+let table = new ascii('Commands'); // Create a new table with the name "Commands".
 table.setHeading('Command', 'Load status');
 
-console.log('Welcome to SERVICE HANDLER'); //logging that it loades
+console.log('Welcome to SERVICE HANDLER'); // Log that the table loads.
 
 module.exports = (client) => {
   readdirSync('./commands/').forEach((dir) => {
-    //reading each command
-    const commands = readdirSync(`./commands/${dir}/`).filter((file) => file.endsWith('.js')); //it will be only a command if it ends with .js
-    for (let file of commands) {
-      //for each file which is a command
-      let command = require(`../commands/${dir}/${file}`); //get informations
+    // Read each command.
+    const commandFiles = readdirSync(`./commands/${dir}/`).filter((file) => file.endsWith('.js')); // It will be only a command if it ends with .js.
+    for (let file of commandFiles) {
+      // For each file which is a command.
+      let command = require(`../commands/${dir}/${file}`); // Get information.
       if (command.name) {
-        //get the name of the command
-        client.commands.set(command.name, command); //set the name of the command
-        table.addRow(file, 'Ready'); //log in table ready
+        client.commands.set(command.name, command); // Set the name of the command.
+        table.addRow(file, 'Ready'); // Log in the table that it is ready.
       } else {
         //?                     Does this error message need changed?
-        table.addRow(file, `error -> missing a command.name, or command.name is not a string.`); //if something wents wrong, do this
-        continue; //and skip
+        table.addRow(file, `error -> missing a command.name, or command.name is not a string.`); // If something goes wrong, throw an error.
+        continue; // .. And skip.
       }
-      if (command.aliases && Array.isArray(command.aliases)) command.aliases.forEach((alias) => client.aliases.set(alias, command.name)); //if there are aliases, do it too
+      if (command.aliases && Array.isArray(command.aliases)) command.aliases.forEach((alias) => client.aliases.set(alias, command.name)); // If there are aliases, do the same as above.
     }
   });
-  console.log(table.toString()); //showing the table
+  console.log(table.toString()); // Show the table.
 };
