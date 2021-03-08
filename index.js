@@ -27,7 +27,7 @@ eventHandler(client); // Event Handler.
 
 // Every time the bot receives a message, this happens.
 client.on('message', async (message) => {
-  console.log(client.channels);
+//  console.log(client.channels);
   if (message.author.bot) return; // If the message author is a bot, ignore the message.
   if (!message.guild) return; // If the message is not in a guild (in DMs), rignore the message.
 
