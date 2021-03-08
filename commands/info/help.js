@@ -11,7 +11,7 @@ module.exports = {
   guildOnly: false, // Whether the command can only be used in a guild. Example: You can run the ping command in a DM, as it doesn't require a server. You cannot run the kick command in a DM, as you cannot kick someone from a DM.
   cooldown: 5, // Set the cooldown, in seconds.
   usage: 'help [Command]', // An example of how to use the command. <> for required and [] for optional parameters.
-  description: 'Returns all Commmands, or one specific command', // The description of the command.
+  description: 'Returns all commands. If specified, it will return all details of a specific command.', // The description of the command.
 
   // A subfunction that runs the command with the following parameters: client, message, args, user, text, prefix.
   run: async (client, message, args, user, text, prefix) => {

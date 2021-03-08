@@ -7,7 +7,7 @@ module.exports = {
   guildOnly: false, // Whether the command can only be used in a guild. Example: You can run the ping command in a DM, as it doesn't require a server. You cannot run the kick command in a DM, as you cannot kick someone from a DM.
   cooldown: 10, // Set the cooldown, in seconds.
   usage: 'uptime', // An example of how to use the command. <> for required and [] for optional parameters.
-  description: 'Returns the duration on how long the Bot is online', // The description of the command.
+  description: 'Returns the duration of how long the bot has been running.', // The description of the command.
 
   // A subfunction that runs the command with the following parameters: client, message, args, user, text, prefix.
   run: async (client, message, args, user, text, prefix) => {
