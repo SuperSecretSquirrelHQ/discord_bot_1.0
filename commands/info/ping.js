@@ -3,7 +3,7 @@ module.exports = {
   name: 'ping', // The name of the command.
   category: 'info', // The category the command will be listed at (for the help cmd).
   aliases: ['latency'], // Array of aliases.
-  args: false, // Whether the command requires arguments. Example: uptime and ping do not require arguments.
+  hasArgs: false, // Whether the command requires arguments. Example: uptime and ping do not require arguments.
   guildOnly: false, // Whether the command can only be used in a guild. Example: You can run the ping command in a DM, as it doesn't require a server. You cannot run the kick command in a DM, as you cannot kick someone from a DM.
   cooldown: 2, // Set the cooldown, in seconds.
   usage: 'ping', // An example of how to use the command. <> for required and [] for optional parameters.
