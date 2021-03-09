@@ -14,7 +14,7 @@ module.exports = async (client) => {
       // For each file, we will "LOAD THE EVENT".
       if (err) return console.error(err); // If there is an error, log it.
       try {
-        delete require.cache[require.resolve(`../events/${file}.js`)];
+        delete require.cache[require.resolve(`../events/${file}`)];
         const event = require(`../events/${file}`); // Create the event from the file name.
         let eventName = file.split('.')[0]; // Get the event name from the file name.
         theevents = eventName; // Set the event name to the global variable.

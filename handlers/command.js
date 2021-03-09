@@ -15,7 +15,7 @@ module.exports = (client, reloadArg) => {
       const commandFiles = readdirSync(`./commands/${dir}/`).filter((file) => file.endsWith('.js')); // It will be only a command if it ends with .js.
       for (let file of commandFiles) {
         try {
-          delete require.cache[require.resolve(`../commands/${dir}/${file}.js`)];
+          delete require.cache[require.resolve(`../commands/${dir}/${file}`)];
           let command = require(`../commands/${dir}/${file}`); // Load the command object.
           if (command.name === reloadArg.name) {
             // Check if the file is the command we want to reload.
@@ -70,7 +70,7 @@ module.exports = (client, reloadArg) => {
       for (let file of commandFiles) {
         try {
           // For each file which is a command.
-          delete require.cache[require.resolve(`../commands/${dir}/${file}.js`)];
+          delete require.cache[require.resolve(`../commands/${dir}/${file}`)];
           let command = require(`../commands/${dir}/${file}`); // Load the command object.
           if (command.name) {
             client.commands.set(command.name, command); // Overwrite the command in the command collection.
