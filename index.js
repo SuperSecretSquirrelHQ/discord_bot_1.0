@@ -7,8 +7,8 @@ const eventHandler = require('./handlers/events.js');
 const commandHandler = require('./handlers/command.js');
 
 const client = new Client({
-  disableEveryone: true, // Disable the bot from tagging @everyone.
-  partials: ['MESSAGE', 'CHANNEL', 'REACTION'] // Create the client with partials, so you can fetch OLD messages.
+    disableEveryone: true, // Disable the bot from tagging @everyone.
+    partials: ['MESSAGE', 'CHANNEL', 'REACTION'], // Create the client with partials, so you can fetch OLD messages.
 });
 
 client.commands = new Collection(); // A collection (like a digital map (database)) for all of the commands.
