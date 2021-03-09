@@ -1,4 +1,3 @@
-require('dotenv').config(); // Require dotenv file for hidden configs.
 //Modules
 const { Client, Collection } = require('discord.js'); // Require discord.js for both client messages and collections.
 const fs = require('fs'); // Require FS for reading files and getting their inputs.
@@ -17,7 +16,9 @@ module.exports = {
 
     // A subfunction that runs the command with the following parameters: client, message, args, user, text (args.join(' ') from index.js), prefix.
     run: async (client, message, args, user, text, prefix) => {
-        delete require.cache[require.resolve(`'../../handlers/command.js`)];
+        delete require.cache[require.resolve(`dotenv`)];
+        require('dotenv').config(); // Require dotenv file for hidden configs.
+        delete require.cache[require.resolve(`../../handlers/command.js`)];
         delete require.cache[require.resolve(`../../handlers/events.js`)];
         const eventHandler = require('../../handlers/events.js');
         const commandHandler = require('../../handlers/command.js');
