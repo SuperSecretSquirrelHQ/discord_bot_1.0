@@ -32,7 +32,8 @@ function getAll(client, message) {
     .setThumbnail(client.user.displayAvatarURL())
     .setTitle('HELP MENU')
     .setFooter(`To see a command's description and other information, type: ${config.prefix}help [command]`, client.user.displayAvatarURL());
-  // Pass in value is client, initiated from index.js.
+
+  // Pass in value is an array of each category within client.categories.
   const commands = (category) => {
     // Find all commands and listing them into a string. Then, filter and map, and join them together again.
     return (
@@ -44,9 +45,18 @@ function getAll(client, message) {
     );
   };
   // Get the command infostring.                                   Discord formatting below
-  const info = client.categories.map((cat) => stripIndents`**__${cat[0].toUpperCase() + cat.slice(1)}__**\n> ${commands(cat)}`).reduce((string, category) => string + '\n' + category);
-  // Send the embed with the description.
-  return message.channel.send(embed.setDescription(info));
+  if (message.owner) {
+    const info = client.categories.map((cat) => stripIndents`**__${cat[0].toUpperCase() + cat.slice(1)}__**\n> ${commands(cat)}`).reduce((string, category) => string + '\n' + category);
+    // Send the embed with the description.
+    return message.channel.send(embed.setDescription(info));
+  } else {
+    const info = client.categories
+      .filter((categ) => categ !== 'admin')
+      .map((cat) => stripIndents`**__${cat[0].toUpperCase() + cat.slice(1)}__**\n> ${commands(cat)}`)
+      .reduce((string, category) => string + '\n' + category);
+    // Send the embed with the description.
+    return message.channel.send(embed.setDescription(info));
+  }
 }
 
 // Function to get all commands.

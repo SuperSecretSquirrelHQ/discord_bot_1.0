@@ -16,8 +16,8 @@ client.aliases = new Collection(); // A collection for all of the command aliase
 client.categories = fs.readdirSync('./commands/'); // Categories.
 client.owners = process.env.OWNERS.split(','); // All owner IDs.
 
-eventHandler(client); // Event Handler.
-commandHandler(client); // Command Handler.
+eventHandler(client, 'init'); // Event Handler.
+commandHandler(client, 'init'); // Command Handler.
 
 console.log('Logging into the BOT...'); // Show loading status.
 //! Needs to be at the end
