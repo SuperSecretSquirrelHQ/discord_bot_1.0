@@ -2,7 +2,7 @@ module.exports = {
   // Define the objects.
   name: 'uptime', // The name of the command.
   category: 'info', // The category the command will be listed at (for the help cmd).
-  aliases: [''], // Array of aliases.
+  aliases: [], // Array of aliases.
   hasArgs: false, // Whether the command requires arguments. Example: uptime and ping do not require arguments.
   guildOnly: false, // Whether the command can only be used in a guild. Example: You can run the ping command in a DM, as it doesn't require a server. You cannot run the kick command in a DM, as you cannot kick someone from a DM.
   cooldown: 10, // Set the cooldown, in seconds.
