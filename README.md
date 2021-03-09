@@ -11,7 +11,13 @@
 
 - <h5>Basic Moderation
 - <h5>Advance Moderation
-- <h5>Reaction Roles
+- <h5>Reaction Roles</h5>
+  - Collection base (no db)<br>
+  - Assign emoji to user nickname (on end)<br>
+- <h5>RSS Feed & On-Behalf Posting</h5>
+  - Create lists and embed w/hyperlinks (weekly sales)<br>
+  - Game Feed<br>
+  - Subscribe to feed<br>
 - <h5>Content Creator Support</h5>
   - Twitch Streams<br>
   - Auto Social Media posting<br>
@@ -21,7 +27,7 @@
 - <h5> Music Player</h5>
   - Reaction Buttons<br>
   - URL or Keyword Search<br>
-- <h5> Events</h5>
+- <h5> Auto Events</h5>
   - Purge Logs or messages from channels<br>
 - <h5> Emoji/Avatar Creator</h5>
   - Upload picture or accept url of image to mock. Outputting a customized Emoji/Avatar<br>
@@ -42,6 +48,7 @@
   - Docker Integration<br>
   - Auto deployments from discord<br>
   - Admin/Mod tools<br>
+  - Minecraft Server Int<br>
 - <h5> Mini-Games</h5>
   - Trivia<br>
   - All the Games<br>
@@ -54,5 +61,5 @@
 - <h5> Github Integration</h5>
   - Auto update pull requests<br>
 - <h5> Marketplace</h5>
-  - Allowing 3rd party Modules to be integrated to the bot<br>
-  - Partner licensing<br>
+  - Allowing 3rd party Modules to be integrated to the botPartner licensing<br>
+- <h5> Bot Screen Sharing </h5>
