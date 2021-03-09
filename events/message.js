@@ -1,6 +1,7 @@
+require('dotenv').config(); // Require dotenv file for hidden configs.
 const { Collection } = require('discord.js'); // Require discord.js for both client messages and collections.
-const config = require('../config.json'); // Load the config file with the token and prefix.
-const prefix = config.prefix; // Define the prefix as a constant variable.
+// const config = require('../config.json'); // Load the config file with the token and prefix.
+const prefix = process.env.PREFIX; // Define the prefix as a constant variable.
 const cooldowns = new Collection(); // A collection for cooldowns of commands for each user.
 
 // Every time the bot receives a message, this happens.

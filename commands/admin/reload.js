@@ -14,26 +14,27 @@ module.exports = {
 
   // A subfunction that runs the command with the following parameters: client, message, args, user, text (args.join(' ') from index.js), prefix.
   run: async (client, message, args, user, text, prefix) => {
-    if (args) {
-      //* This is not the 'reload' command. It is the command we want to reload
-      const command = client.commands.get(args[0]);
-      if (!client.commands.has(command)) {
-        return message.reply('That command does not exist, so we can not reload it.');
-      } else if (args == 'events' || 'event') {
-        eventHandler(client);
-        message.channel.send(`Events have been reloaded`);
-      } else if (args == 'command' || 'commands') {
-        commandHandler(client);
-        message.channel.send(`Commands have been reloaded`);
+    if (message.owner) {
+      if (args) {
+        //* This is not the 'reload' command. It is the command we want to reload
+        const command = client.commands.get(args[0]);
+        if (!client.commands.has(command)) {
+          return message.reply('That command does not exist, so we can not reload it.');
+        } else if (args == 'events' || 'event') {
+          eventHandler(client);
+          message.channel.send(`Events have been reloaded`);
+        } else if (args == 'command' || 'commands') {
+          commandHandler(client);
+          message.channel.send(`Commands have been reloaded`);
+        } else {
+          commandHandler(client, command);
+          message.channel.send(`Command ${command} has been reloaded`);
+        }
       } else {
-        //TODO: Allow single command to be refreshed, instead of all commands every time.
-        commandHandler(client, command);
-        message.channel.send(`Command ${command} has been reloaded`);
+        commandHandler(client);
+        eventHandler(client);
+        message.channel.send(`All commands and Events have been reloaded`);
       }
-    } else {
-      commandHandler(client);
-      eventHandler(client);
-      message.channel.send(`All commands and Events have been reloaded`);
     }
   }
 };
