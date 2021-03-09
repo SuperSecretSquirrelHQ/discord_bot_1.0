@@ -2,7 +2,7 @@ const fs = require('fs'); // Require FS for reading files and getting their inpu
 const ascii = require('ascii-table'); // Require ascii-table for creating ascii tables.
 
 let table = new ascii('Events'); // Create a new table with the name "Commands".
-table.setHeading('Events', 'Load status');
+table.setHeading('Events', 'Status');
 
 module.exports = async (client) => {
   let theevents; // This is a global variable.
@@ -21,6 +21,7 @@ module.exports = async (client) => {
   });
 
   // Now that we have an array for all events in the event folder, we can load it in a loop and pass it onto our table.
+  table.clearRows();
   for (let i = 0; i < theevents.length; i++) {
     try {
       table.addRow(theevents[i], 'Ready'); // Log in the table that it is ready.
