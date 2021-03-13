@@ -18,7 +18,7 @@ module.exports = async (client) => {
             const event = require(`../events/${file}`); // Create the event from the file name.
             let eventName = file.split('.')[0]; // Get the event name from the file name.
             theevents = eventName; // Set the event name to the global variable.
-            //! If we hadd multiple listeners to one event name, this must be changed.
+            //! If we had multiple listeners to one event name, this must be changed.
             client.removeAllListeners(eventName);
             client.on(eventName, event.bind(this, client)); // LOAD THE EVENT
         });
