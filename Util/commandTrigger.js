@@ -5,7 +5,7 @@ const prefix = process.env.PREFIX; // Define the prefix as a constant variable.
 const cooldowns = new Collection(); // A collection for cooldowns of commands for each user.
 
 // Every time the bot receives a message, this happens.
-module.exports = (client, message) => {
+module.exports = async (client, message) => {
     if (message.author.bot) return; // If the message author is a bot, ignore the message.
     if (!message.guild) return; // If the message is not in a guild (in DMs), ignore the message.
 
@@ -55,7 +55,7 @@ module.exports = (client, message) => {
             setTimeout(() => timestamps.delete(message.author.id), cooldownAmount); // Set a timeout function with the cooldown, so it gets deleted later on.
         }
         try {
-            command.run(client, message, args, message.author, args.join(' '), prefix); // Run the command with the parameters: client, message, args, user, text, prefix. Note: args.join(' ') is actually the text variable.
+            await command.run(client, message, args, message.author, args.join(' '), prefix); // Run the command with the parameters: client, message, args, user, text, prefix. Note: args.join(' ') is actually the text variable.
 
             /* /////////////////////////////////////////
         HERE AN EXAMPLE:
@@ -76,5 +76,5 @@ module.exports = (client, message) => {
             return message.reply('Something went wrong while, running the: `' + command.name + '` command');
         }
     } // If the command is not found send, say so.
-    else return message.reply(`Unkown command, try: **\`${prefix}help\`**`);
+    else return message.reply(`Unknown command, try: **\`${prefix}help\`**`);
 };
